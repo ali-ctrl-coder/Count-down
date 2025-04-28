@@ -24,28 +24,31 @@
       margin-bottom: 20px;
     }
     #countdown {
-      font-size: 1.5em;
-      letter-spacing: 2px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .circle {
       display: inline-block;
-      width: 50px;
-      height: 50px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
-      background-color: #ff5733;
-      color: white;
-      font-size: 1.2em;
-      line-height: 50px;
+      background-color: #fff;  /* لون الدائرة أبيض */
+      color: black;  /* اللون النص أسود */
+      font-size: 1.5em;
+      line-height: 80px;
       margin: 10px;
       text-align: center;
+      border: 4px solid black;  /* حواف سوداء */
     }
     .label {
       display: block;
-      font-size: 0.8em;
+      font-size: 1em;
       margin-top: 5px;
+      color: #333;
     }
     .seconds {
-      color: red;
+      color: red;  /* اللون الأحمر للثواني */
     }
   </style>
 </head>
