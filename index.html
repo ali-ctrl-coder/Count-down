@@ -3,30 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Final Countdown</title>
+  <title>The Final Countdown to Freedom</title>
   
   <style>
-    /* خلفية بسيطة */
     body {
-      background-color: #f0f4f8;
-      color: #333;
+      background-color: #fff;
+      color: #000;
       font-family: 'Arial', sans-serif;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      text-align: center;
       margin: 0;
-      padding: 0;
+      transition: background-color 1s, color 1s;
     }
 
     h1 {
-      font-size: 2.5em;
-      margin-bottom: 30px;
-      color: #333;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      text-align: center;
+      font-size: 2em;
+      margin-bottom: 20px;
     }
 
     #countdown {
@@ -37,41 +33,35 @@
 
     .circle {
       display: inline-block;
-      width: 100px;
-      height: 100px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      background-color: #ffffff;
-      color: #333;
-      font-size: 2em;
-      line-height: 100px;
-      margin: 0 20px;
+      background-color: #fff;
+      color: black;
+      font-size: 1.2em;
+      line-height: 60px;
+      margin: 10px;
       text-align: center;
-      border: 4px solid #ddd;
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s, background-color 0.3s ease;
-    }
-
-    .circle:hover {
-      transform: scale(1.1);
-      background-color: #f9f9f9;
+      border: 4px solid black;
+      transition: transform 0.3s, background-color 0.3s;
     }
 
     .label {
+      display: block;
       font-size: 0.8em;
-      color: #555;
-      margin-top: 10px;
+      margin-top: 5px;
+      color: #333;
     }
 
     .seconds {
-      color: #e74c3c;  /* Red color for seconds */
+      color: red;
     }
 
-    /* الرسالة بعد انتهاء العد التنازلي */
+    /* إضافة تأثيرات عند انتهاء العد */
     .celebration {
+      color: white;
       font-size: 3em;
-      color: #2ecc71;
       font-weight: bold;
-      margin-top: 20px;
       animation: celebrate 1s ease-out;
     }
 
@@ -81,35 +71,42 @@
       }
       100% {
         transform: scale(1);
-        color: #e74c3c;
+        color: #ff6347;
       }
+    }
+
+    /* تأثير الخلفية */
+    .finished {
+      background-color: #ff6347;  /* اللون عند الانتهاء */
+      color: white;
     }
 
   </style>
 </head>
 <body>
 
-  <h1>The Final Countdown</h1>
+  <h1 id="title">The Final Countdown to Freedom</h1>
 
   <div id="countdown">
-    <div class="circle" id="days">
-      <span>00</span>
-      <div class="label">Days</div>
+    <div class="circle">
+      <span id="days"></span>
+      <span class="label">Days</span>
     </div>
-    <div class="circle" id="hours">
-      <span>00</span>
-      <div class="label">Hours</div>
+    <div class="circle">
+      <span id="hours"></span>
+      <span class="label">Hours</span>
     </div>
-    <div class="circle" id="minutes">
-      <span>00</span>
-      <div class="label">Minutes</div>
+    <div class="circle">
+      <span id="minutes"></span>
+      <span class="label">Minutes</span>
     </div>
-    <div class="circle" id="seconds" class="seconds">
-      <span>00</span>
-      <div class="label">Seconds</div>
+    <div class="circle">
+      <span id="seconds" class="seconds"></span>
+      <span class="label">Seconds</span>
     </div>
   </div>
 
+  <!-- إضافة JavaScript -->
   <script>
     const targetDate = new Date("2025-06-25T15:00:00");
 
@@ -118,7 +115,9 @@
       const diff = targetDate - now;
 
       if (diff <= 0) {
+        document.getElementById("title").textContent = "🎉 It's Time! 🎉";
         document.getElementById("countdown").innerHTML = `<span class="celebration">🎉 Time's Up! 🎉</span>`;
+        document.body.classList.add("finished");  // تغيير الخلفية
         clearInterval(interval);
         return;
       }
@@ -128,10 +127,10 @@
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-      document.getElementById("days").children[0].textContent = days;
-      document.getElementById("hours").children[0].textContent = hours;
-      document.getElementById("minutes").children[0].textContent = minutes;
-      document.getElementById("seconds").children[0].textContent = seconds;
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
     }
 
     const interval = setInterval(updateCountdown, 1000);
