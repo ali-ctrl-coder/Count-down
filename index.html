@@ -6,9 +6,10 @@
   <title>The Final Countdown to Freedom</title>
   
   <style>
+    /* تصميم الخلفية */
     body {
-      background-color: #fff;
-      color: #000;
+      background: linear-gradient(to bottom, #00c6ff, #0072ff);
+      color: #fff;
       font-family: 'Arial', sans-serif;
       display: flex;
       flex-direction: column;
@@ -17,47 +18,55 @@
       height: 100vh;
       text-align: center;
       margin: 0;
+      padding: 0;
       transition: background-color 1s, color 1s;
     }
 
     h1 {
-      font-size: 2em;
-      margin-bottom: 20px;
+      font-size: 2.5em;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     }
 
     #countdown {
       display: flex;
       justify-content: center;
       align-items: center;
+      margin-top: 30px;
     }
 
     .circle {
       display: inline-block;
-      width: 60px;
-      height: 60px;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
       background-color: #fff;
-      color: black;
-      font-size: 1.2em;
-      line-height: 60px;
+      color: #333;
+      font-size: 2em;
+      line-height: 90px;
       margin: 10px;
       text-align: center;
-      border: 4px solid black;
+      border: 4px solid #fff;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
       transition: transform 0.3s, background-color 0.3s;
+      font-family: 'Arial', sans-serif;
     }
 
     .label {
       display: block;
       font-size: 0.8em;
-      margin-top: 5px;
-      color: #333;
+      margin-top: 10px;
+      color: #555;
     }
 
     .seconds {
       color: red;
+      font-weight: bold;
     }
 
-    /* إضافة تأثيرات عند انتهاء العد */
     .celebration {
       color: white;
       font-size: 3em;
@@ -75,7 +84,6 @@
       }
     }
 
-    /* تأثير الخلفية */
     .finished {
       background-color: #ff6347;  /* اللون عند الانتهاء */
       color: white;
@@ -106,7 +114,6 @@
     </div>
   </div>
 
-  <!-- إضافة JavaScript -->
   <script>
     const targetDate = new Date("2025-06-25T15:00:00");
 
@@ -117,7 +124,7 @@
       if (diff <= 0) {
         document.getElementById("title").textContent = "🎉 It's Time! 🎉";
         document.getElementById("countdown").innerHTML = `<span class="celebration">🎉 Time's Up! 🎉</span>`;
-        document.body.classList.add("finished");  // تغيير الخلفية
+        document.body.classList.add("finished");
         clearInterval(interval);
         return;
       }
